@@ -20,7 +20,7 @@ app.set('port', 5000);
 app.use(cors({
     origin: true,
     credentials: true
-}))
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true

@@ -2,16 +2,36 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const taskSchema = new mongoose.Schema({
-    // taskSchema
+  title: {
+    type: String,
+    required: true,
+    minlength: 4,
+    maxlength: 16
+  },
+  text: {
+    type: String,
+    maxlength: 255
+  },
+  tags: {
+    type: Array,
+  },
+  timeCreated: {
+    type: Date,
+    default: Date.now
+  },
+  isDone: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const Task = mongoose.model('Task', taskSchema, 'tasks');
 
 function validateTask(task) {
     const schema = {
-        // username: Joi.string().min(4).max(16).required(),
-        // email: Joi.string().email().required(),
-        // password: Joi.string().min(5).max(255).required(),
+        title: Joi.string().min(4).max(16).required(),
+        text: Joi.string().max(255),
+        tags: Joi.array().items(Joi.string())
     }
     return Joi.validate(task, schema);
 }
