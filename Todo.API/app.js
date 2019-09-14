@@ -12,10 +12,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors')
 
-
-
 const users = require('./src/routes/users');
-
+const tasks = require('./src/routes/tasks');
 
 
 app.set('port', 5000);
@@ -31,9 +29,8 @@ app.use(morgan('tiny'));
 app.use(helmet());
 
 
-
-
 app.use('/api/users', users);
+app.use('/api/tasks', tasks);
 
 
 let server = app.listen(app.get('port'), () => {
