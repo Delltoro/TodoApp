@@ -12,11 +12,16 @@ body {
   color: $main-col;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   height: 100vh;
   margin: 0;
   padding: 0;
-  width: 100vw;
+  width: 100%;
   z-index: -2;
+}
+
+main {
+  height: 398px;
 }
 
 *,

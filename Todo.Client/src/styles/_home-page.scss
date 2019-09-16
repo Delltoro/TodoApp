@@ -1,0 +1,52 @@
+.home-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  .add-task {
+    @extend %field;
+    background-color: rgba(255, 255, 255, .8);
+    display: flex;
+    align-items: center;
+  }
+  .task-title {
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+  }
+  .tasks-list {
+
+    .task-short {
+      @extend %field;
+      background-color: rgba(255, 255, 255, .8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+    .task-full {
+      @extend %field;
+      align-items: center;
+      background-color: rgba(255, 255, 255, .8);
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      justify-content: space-between;
+      .toolbar {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 30px;
+      }
+    }
+    .active {
+      color: $main-col;
+    }
+    .done {
+      color: $not-active-col;
+    }
+  }
+}
