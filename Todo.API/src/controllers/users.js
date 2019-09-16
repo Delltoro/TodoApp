@@ -3,6 +3,8 @@ const {
     validate
 } = require('../models/user')
 
+const bcrypt = require('bcrypt');
+
 
 
 module.exports = {
@@ -38,6 +40,9 @@ module.exports = {
                 email: req.body.email,
                 password: req.body.password,
             });
+
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
             await user.save();
             res.send(user);
         } catch (error) {
