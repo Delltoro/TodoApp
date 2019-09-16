@@ -39,6 +39,7 @@ module.exports = {
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password,
+                tasks: req.body.tasks
             });
 
             const salt = await bcrypt.genSalt(10);
@@ -59,8 +60,10 @@ module.exports = {
 
             const user = await User.findByIdAndUpdate(req.params.id,
                 {
+                    username: req.body.username,
                     email: req.body.email,
                     password: req.body.password,
+                    tasks: req.body.tasks
                 },
                 { new: true});
             if(!user) return res.status(404).send('User not found.');
