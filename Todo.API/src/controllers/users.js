@@ -11,7 +11,7 @@ module.exports = {
 
     getUserById: async function (req, res) {
         try {
-            const user = await User.findById(req.params.userId);
+            const user = await User.findById(req.params.id);
             if (!user) return res.status(404).send('A user with the given ID was not found.')
             res.send(user)
 
