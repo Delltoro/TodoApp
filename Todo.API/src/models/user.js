@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         maxlength: 255
     },
     tasks: {
-        type: Array,
+        type: { type: 'ObjectId', ref: 'Task' },
     }
 
 })
