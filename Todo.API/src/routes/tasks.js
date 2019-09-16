@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const tasksController = require('../controllers/tasks');
+const auth = require('../middleware/auth.js');
+
+// router
+router
+    .use(auth)
 
 router
     .route('/')
