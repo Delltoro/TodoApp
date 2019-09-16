@@ -4,22 +4,13 @@ const tasksController = require('../controllers/tasks');
 
 router
     .route('/')
-    .get(tasksController.getTasks);
-
-router
-    .route('/:id')
-    .get(tasksController.getTaskById);
-
-router
-    .route('/')
+    .get(tasksController.getTasks)
     .post(tasksController.addTask);
 
 router
     .route('/:id')
-    .put(tasksController.updateTask);
-
-router
-    .route('/:id')
+    .get(tasksController.getTaskById)
+    .put(tasksController.updateTask)
     .delete(tasksController.removeTask);
 
 module.exports = router;
