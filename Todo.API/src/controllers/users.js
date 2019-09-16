@@ -55,8 +55,7 @@ module.exports = {
             const { error } = validate(req.body);
             if(error) return res.status(400).send(error.details[0].message);
 
-            const user = await User.findByIdAndUpdate(
-                req.params.id,
+            const user = await User.findByIdAndUpdate(req.params.id,
                 {
                     email: req.body.email,
                     password: req.body.password,
@@ -71,7 +70,7 @@ module.exports = {
 
      removeUser: async (req, res) => {
         try {
-            const user = await User.findByIdAndRemove(req.params.id);
+            const user = await User.findOneAndDelete(req.params.id);
             if(!user) return res.status(404).send('User not found.');
             res.send(user);
         } catch (error) {
