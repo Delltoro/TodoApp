@@ -34,6 +34,11 @@ module.exports = {
         try {
             const { error } = validate(req.body);
             if(error) return res.status(400).send(error.details[0].message);
+            const token = req.header('x-auth-token');
+            const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
+
+            const user = await User.findById(decoded._id);
+            if (!user) return res.status(404).send('A user with the given ID was not found.')
 
             const task = new Task({
                 title: req.body.title,
@@ -42,7 +47,11 @@ module.exports = {
                 timeCreated: new Date(),
                 isDone: false
             });
+
             await task.save();
+            user.tasks.push(task._id);
+            user.save();
+
             res.send(task);
         } catch (error) {
             res.status(500).send('An error occured.');
