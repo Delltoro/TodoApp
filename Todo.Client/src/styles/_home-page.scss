@@ -10,6 +10,10 @@
     background-color: rgba(255, 255, 255, .8);
     display: flex;
     align-items: center;
+    &:hover {
+      color: $hover-col;
+      cursor: pointer;
+    }
   }
   .task-title {
     display: inline-block;
@@ -41,6 +45,9 @@
         width: 100%;
         height: 30px;
       }
+      .tags {
+        font-size: .75rem;
+      }
     }
     .active {
       color: $main-col;
@@ -48,5 +55,9 @@
     .done {
       color: $not-active-col;
     }
+  }
+  i:hover {
+    color: $hover-col;
+    cursor: pointer;
   }
 }
