@@ -20,11 +20,14 @@ module.exports = {
             const token = req.header('x-auth-token');
             const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
 
-            const user = await User.findById(decoded._id);
+            const user = await User
+                                .findById(decoded._id)
+                                .populate('tasks');
+
             if (!user) return res.status(404).send('A user with the given ID was not found.')
 
-            const tasks = await Task.find({"_id":user.tasks}).sort('timeCreated');
-            res.send(tasks);
+            res.send(user.tasks);
+            
         } catch (error) {
             res.status(500).send('An error occured.');
         }
