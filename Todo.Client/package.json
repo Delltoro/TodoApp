@@ -44,7 +44,9 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.1",
+    "config": "^3.2.2",
+    "config-webpack": "^1.0.4"
   },
   "keywords": [],
   "description": ""

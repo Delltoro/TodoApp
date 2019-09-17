@@ -1,27 +1,7 @@
-@import 'variables.css';
-
-
-:root{
-    font-family: 'Open Sans';
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    background-image: url('../images/trees.jpg');
-    background-repeat: repeat;
-    background-size: cover;
-    z-index: -2;
-    
-
-}
-
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+@import 'variables';
+@import 'base';
+@import 'header';
+@import 'search-bar';
+@import 'home-page';
+@import 'footer';

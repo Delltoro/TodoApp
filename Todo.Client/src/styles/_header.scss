@@ -1,0 +1,35 @@
+header {
+  align-items: center;
+  display: flex;
+  height: 80px;
+  width: 100%;
+  .heading {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: inline-block;
+    text-align: right;
+    width: 50%;
+
+    .title {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    .username-display {
+      margin: 0;
+    }
+  }
+  .avatar-display {
+    width: 50%;
+
+    .user-avatar {
+      background-image: url('../images/dummy-avatar.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50%;
+      border-radius: 50%;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      height: 50px;
+      margin: 0 auto;
+      width: 50px;
+    }
+  }
+}

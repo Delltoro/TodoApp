@@ -6,6 +6,7 @@ import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import PurgecssPlugin from "purgecss-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CleanWebpackPlugin from "clean-webpack-plugin";
+import ConfigWebpackPlugin from 'config-webpack';
 
 const PATHS = {
   src: path.join(__dirname, "src")
@@ -47,7 +48,8 @@ module.exports = {
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
-    })
+    }),
+    new ConfigWebpackPlugin()
   ],
 
   module: {

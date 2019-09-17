@@ -1,0 +1,17 @@
+.search-bar {
+  height: 30px;
+  width: 100%;
+  .search-input {
+    @extend %field;
+    display: block;
+    background-color: $not-active-col;
+    border: none;
+    font: inherit;
+    outline: none;
+    margin: 0 auto;
+    &::placeholder {
+      text-align: center;
+      color: rgba(66, 44, 33, 0.5);
+    }
+  }
+}
