@@ -10,14 +10,14 @@ body {
   background-size: cover;
   background-position: 50% 50%;
   color: $main-col;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  width: 100%;
   z-index: -2;
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
+    width: 100%;
+  }
 }
 
 main {
@@ -28,4 +28,6 @@ main {
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }

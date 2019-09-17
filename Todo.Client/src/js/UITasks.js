@@ -1,3 +1,5 @@
+import homePageController from './homePageController';
+
 const main = document.querySelector('main');
 
 class UITasks {
@@ -15,20 +17,28 @@ class UITasks {
     tasksList.classList.add('tasks-list');
     tasksList.innerHTML = `Loading your tasks...`;
     homePage.appendChild(tasksList);
+
+    homePageController();
   }
+
   static renderTasksList(tasks) {
     const tasksList = document.querySelector('.tasks-list');
     tasksList.innerHTML = '';
     tasks.map(taskData => {
       const task = document.createElement('div');
+      task.setAttribute('taskId', taskData._id)
       task.classList.add('task-short');
       task.classList.add(taskData.isDone?'done':'active');
       task.innerHTML = `
-        <i class="fas fa-bars"></i>
+        <i class="show-full-task fas fa-bars"></i>
         <p class="task-title">${taskData.title}</p>
-        <i class="fas fa-check"></i>`;
+        <i class="toggle-task-state fas fa-check"></i>`;
       tasksList.appendChild(task);
     });
+  }
+
+  static showFullTask() {
+    
   }
 }
 
