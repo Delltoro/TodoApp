@@ -1,12 +1,12 @@
-import UITasks from './UITasks';
+// import UITasks from './UITasks';
+import getTask from './getTask';
 
 const homePageController = () => {
   document.querySelector('.home-page').addEventListener('click', event => {
 
     if(event.target.classList.contains('show-full-task')) {
-      UITasks.showFullTask(event.target);
+      getTask(event.target.parentElement.dataset.id)
     }
-    // console.log(event.target);
 
   })
 }

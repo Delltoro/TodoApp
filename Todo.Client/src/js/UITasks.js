@@ -26,7 +26,7 @@ class UITasks {
     tasksList.innerHTML = '';
     tasks.map(taskData => {
       const task = document.createElement('div');
-      task.setAttribute('taskId', taskData._id)
+      task.setAttribute('data-id', taskData._id)
       task.classList.add('task-short');
       task.classList.add(taskData.isDone?'done':'active');
       task.innerHTML = `
@@ -37,8 +37,26 @@ class UITasks {
     });
   }
 
-  static showFullTask() {
-    
+  static showFullTask(taskData) {
+    const task = document.querySelector(`div[data-id="${taskData._id}"]`);
+    task.classList.remove('task-short');
+    task.classList.add('task-full');
+    task.innerHTML = `
+      <div class="toolbar">
+          <i class="fas fa-chevron-up"></i>
+          <i class="fas fa-pencil-alt"></i>
+          <i class="fas fa-trash-alt"></i>
+      </div>
+      <p class="task-title">${taskData.title}</p>
+      <p class="task-text">${taskData.text}</p>
+      <p class="tags"></p>`
+    const tags = taskData.tags;
+    tags.map(tag => {
+      const tagSpan = document.createElement('span');
+      tagSpan.classList.add('tag');
+      tagSpan.textContent = `#${tag} `;
+      document.querySelector('.tags').appendChild(tagSpan);
+    })
   }
 }
 
