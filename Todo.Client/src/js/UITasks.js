@@ -61,7 +61,6 @@ class UITasks {
 
   static collapseTask(taskData) {
     const task = document.querySelector(`div[data-id="${taskData._id}"]`);
-    task.removeChild(document.querySelector('.tags'));
     task.classList.remove('task-full');
     task.classList.add('task-short');
     task.classList.add(taskData.isDone?'done':'active');
