@@ -12,11 +12,11 @@ class RoutesTasks {
       console.log(error);
     }
   }
-  
-  static async getTask(id) {
+
+  static async getTask(id, option) {
     try {
       const task = await axios.get(CONFIG.ServerAPI.url + '/api/tasks/' + id);
-      UITasks.showFullTask(task.data);
+      option === 'expand' ? UITasks.expandTask(task.data) : UITasks.collapseTask(task.data);
     }
     catch(error) {
       console.log(error);
