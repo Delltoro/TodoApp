@@ -22,6 +22,21 @@ class RoutesTasks {
       console.log(error);
     }
   }
+
+  static async setTaskState(id, isDone) {
+    try {
+      const task = await axios.get(CONFIG.ServerAPI.url + '/api/tasks/' + id);
+      axios.put(CONFIG.ServerAPI.url + '/api/tasks/' + id, {
+        "isDone": isDone,
+        "title": task.data.title,
+        "text": task.data.text,
+        "tags": task.data.tags
+      });
+    }
+    catch(error) {
+      console.log(error);
+    }
+  }
 }
 
 export default RoutesTasks;
