@@ -1,4 +1,4 @@
-import homePageController from './homePageController';
+import tasksController from './tasksController';
 
 const main = document.querySelector('main');
 
@@ -18,7 +18,7 @@ class UITasks {
     tasksList.innerHTML = `Loading your tasks...`;
     homePage.appendChild(tasksList);
 
-    homePageController();
+    tasksController();
   }
 
   static renderTasksList(tasks) {

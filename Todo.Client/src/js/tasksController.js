@@ -1,14 +1,14 @@
 // import UITasks from './UITasks';
-import getTask from './getTask';
+import RoutesTasks from './RoutesTasks';
 
-const homePageController = () => {
+const tasksController = () => {
   document.querySelector('.home-page').addEventListener('click', event => {
 
     if(event.target.classList.contains('show-full-task')) {
-      getTask(event.target.parentElement.dataset.id)
+      RoutesTasks.getTask(event.target.parentElement.dataset.id)
     }
 
   })
 }
 
-export default homePageController;
+export default tasksController;
