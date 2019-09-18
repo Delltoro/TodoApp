@@ -55,7 +55,7 @@ class UITasks {
       const tagSpan = document.createElement('span');
       tagSpan.classList.add('tag');
       tagSpan.textContent = `#${tag} `;
-      document.querySelector('.tags').appendChild(tagSpan);
+      task.querySelector('.tags').appendChild(tagSpan);
     })
   }
 
