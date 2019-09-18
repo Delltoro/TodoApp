@@ -21,6 +21,24 @@ module.exports = {
         }
     },
 
+    getCurrentUser: async function (req, res) {
+        try {
+
+            const user = await User
+                                .findById(req.user)
+                                .populate('tasks')
+                                .select("username email tasks");
+
+            if (!user) return res.status(404).send('A user with the given ID was not found.')
+            res.send(user);
+
+        } catch (error) {
+
+            res.status(500).send('Error occurred')
+        }
+    },
+
+
     getUsers: async (req, res) => {
         try {
             const users = await User.find().sort('timeCreated');
