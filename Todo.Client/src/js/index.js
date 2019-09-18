@@ -1,8 +1,8 @@
 import UITasks from './UITasks';
-import getTasks from './getTasks';
-import homePageController from './homePageController';
+import RoutesTasks from './RoutesTasks';
+// import tasksController from './tasksController';
 
 UITasks.renderHomePage();
-getTasks();
+RoutesTasks.getTasks();
 
 

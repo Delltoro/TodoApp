@@ -1,4 +1,4 @@
-import homePageController from './homePageController';
+import tasksController from './tasksController';
 
 const main = document.querySelector('main');
 
@@ -17,8 +17,8 @@ class UITasks {
     tasksList.classList.add('tasks-list');
     tasksList.innerHTML = `Loading your tasks...`;
     homePage.appendChild(tasksList);
-
-    homePageController();
+    // activate listening on ui buttons to handle user interactions
+    tasksController();
   }
 
   static renderTasksList(tasks) {
@@ -37,13 +37,13 @@ class UITasks {
     });
   }
 
-  static showFullTask(taskData) {
+  static expandTask(taskData) {
     const task = document.querySelector(`div[data-id="${taskData._id}"]`);
     task.classList.remove('task-short');
     task.classList.add('task-full');
     task.innerHTML = `
       <div class="toolbar">
-          <i class="fas fa-chevron-up"></i>
+          <i class="collapse-task fas fa-chevron-up"></i>
           <i class="fas fa-pencil-alt"></i>
           <i class="fas fa-trash-alt"></i>
       </div>
@@ -55,8 +55,19 @@ class UITasks {
       const tagSpan = document.createElement('span');
       tagSpan.classList.add('tag');
       tagSpan.textContent = `#${tag} `;
-      document.querySelector('.tags').appendChild(tagSpan);
+      task.querySelector('.tags').appendChild(tagSpan);
     })
+  }
+
+  static collapseTask(taskData) {
+    const task = document.querySelector(`div[data-id="${taskData._id}"]`);
+    task.classList.remove('task-full');
+    task.classList.add('task-short');
+    task.classList.add(taskData.isDone?'done':'active');
+    task.innerHTML = `
+      <i class="show-full-task fas fa-bars"></i>
+      <p class="task-title">${taskData.title}</p>
+      <i class="toggle-task-state fas fa-check"></i>`;
   }
 }
 
