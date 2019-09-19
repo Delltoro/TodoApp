@@ -27,7 +27,7 @@ module.exports = {
             const user = await User
                                 .findById(req.user)
                                 .populate('tasks')
-                                .select("username email tasks");
+                                .select("username email tasks avatarURL");
 
             if (!user) return res.status(404).send('A user with the given ID was not found.')
             res.send(user);
