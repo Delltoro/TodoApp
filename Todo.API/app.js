@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors')
+const config = require('config');
 
 const users = require('./src/routes/users');
 const tasks = require('./src/routes/tasks');
