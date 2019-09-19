@@ -47,7 +47,7 @@ class RoutesTasks {
         let searchValue = event.srcElement.value;
         const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}`)
 
-        let regexp = new RegExp(".*" + searchValue + ".*", 'i');
+        let regexp = new RegExp(`.*${searchValue}.*`, 'i');
         let matches = tasks.data.filter((task) => task.title.match(regexp));
 
         UITasks.renderTasksList(matches);
