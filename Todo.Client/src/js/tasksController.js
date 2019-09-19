@@ -21,6 +21,7 @@ const tasksController = () => {
       }
     }
   })
+  document.querySelector(".search-bar").addEventListener('keydown',RoutesTasks.searchTask);
 }
 
 export default tasksController;
