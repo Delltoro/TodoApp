@@ -24,9 +24,8 @@ const userSchema = new mongoose.Schema({
         type: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Task' } ],
     },
     avatarURL: {
-        type: String,
-        default: 'https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png'
-    }
+        type: String
+    } // TODO: implement file loading instead of providing url
 
 })
 
