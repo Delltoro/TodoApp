@@ -22,12 +22,16 @@ const userSchema = new mongoose.Schema({
     },
     tasks: {
         type: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Task' } ],
+    },
+    avatarURL: {
+        type: String,
+        default: 'https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png'
     }
 
 })
 
 
-userSchema.methods.generateAuthToken = function() { 
+userSchema.methods.generateAuthToken = function() {
     const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
     return token;
   }
@@ -40,6 +44,7 @@ function validateUser(user) {
         email: Joi.string().email().required(),
         password: Joi.string().min(5).max(255).required(),
         tasks: Joi.array().items(Joi.string()),
+        avatarURL: Joi.string()
     }
     return Joi.validate(user, schema);
 }
