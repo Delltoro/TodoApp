@@ -1,17 +1,23 @@
-.search-bar {
-  height: 30px;
-  width: 100%;
-  .search-input {
-    @extend %field;
-    display: block;
-    background-color: $not-active-col;
-    border: none;
-    font: inherit;
-    outline: none;
-    margin: 0 auto;
-    &::placeholder {
-      text-align: center;
+.search-fields {
+
+  .search-bar {
+    height: 30px;
+    margin-bottom: 10px;
+    width: 100%;
+    .search-field {
+      @extend %field;
+      display: block;
+      background-color: $not-active-col;
+      border: none;
+      font: inherit;
+      outline: none;
+      margin: 0 auto;
       color: rgba(66, 44, 33, 0.5);
+      text-align: center;
+      text-align-last: center;
+      &::placeholder {
+        color: rgba(66, 44, 33, 0.5);
+      }
     }
   }
 }
