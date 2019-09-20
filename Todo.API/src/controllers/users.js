@@ -27,7 +27,7 @@ module.exports = {
             const user = await User
                                 .findById(req.user)
                                 .populate('tasks')
-                                .select("username email tasks");
+                                .select("username email tasks avatarURL");
 
             if (!user) return res.status(404).send('A user with the given ID was not found.')
             res.send(user);
@@ -57,14 +57,15 @@ module.exports = {
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password,
-                tasks: req.body.tasks
+                tasks: req.body.tasks,
+                avatarURL: req.body.avatarURL
             });
 
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(user.password, salt);
             await user.save();
             const token = user.generateAuthToken();
-        
+
             res.header('x-auth-token', token).send(user);
         } catch (error) {
             res.status(500).send('An error occured.');
@@ -81,7 +82,8 @@ module.exports = {
                     username: req.body.username,
                     email: req.body.email,
                     password: req.body.password,
-                    tasks: req.body.tasks
+                    tasks: req.body.tasks,
+                    avatarURL: req.body.avatarURL
                 },
                 { new: true});
             if(!user) return res.status(404).send('User not found.');
