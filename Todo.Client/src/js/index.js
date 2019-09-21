@@ -1,8 +1,13 @@
 import UITasks from './UITasks';
-import RoutesTasks from './RoutesTasks';
-// import tasksController from './tasksController';
+import {pageData, Page} from './PageModel';
 
 UITasks.renderHomePage();
-RoutesTasks.getTasks();
+if (!pageData.getKey()){
+    Page.showlogin()
+}
+else{
+    Page.renderTasks()
+}
+
 
 

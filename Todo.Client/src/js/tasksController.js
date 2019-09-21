@@ -1,4 +1,5 @@
 import RoutesTasks from './RoutesTasks';
+import RoutesLogin from './RoutesLogin';
 
 const tasksController = () => {
   document.querySelector('.home-page').addEventListener('click', event => {
@@ -22,6 +23,7 @@ const tasksController = () => {
     }
   })
   document.querySelector(".search-bar").addEventListener('keydown',RoutesTasks.searchTask);
+  document.querySelector(".login-container .submit").addEventListener('click',RoutesLogin.login);
 }
 
 export default tasksController;

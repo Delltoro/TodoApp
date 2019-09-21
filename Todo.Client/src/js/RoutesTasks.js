@@ -1,14 +1,22 @@
 import axios from 'axios';
 import UITasks from './UITasks';
 import { delay } from 'q';
+import {pageData, Page} from './PageModel';
 
 const ENDPOINT = '/api/tasks';
+
+
+async function getConfig(){
+  await delay(1);
+  return {"headers":{"x-auth-token":pageData.getKey()}}
+}
 
 class RoutesTasks {
 
   static async getTasks() {
     try {
-      const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}`);
+      await delay(1);
+      const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}`,await getConfig());
       UITasks.renderTasksList(tasks.data);
     }
     catch(error) {
@@ -18,7 +26,7 @@ class RoutesTasks {
 
   static async getTask(id, option) {
     try {
-      const task = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`);
+      const task = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,await getConfig());
       option === 'expand' ? UITasks.expandTask(task.data) : UITasks.collapseTask(task.data);
     }
     catch(error) {
@@ -28,13 +36,13 @@ class RoutesTasks {
 
   static async setTaskState(id, isDone) {
     try {
-      const task = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`);
-      axios.put(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`, {
+      const task = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,await getConfig());
+      axios.put(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,{
         "isDone": isDone,
         "title": task.data.title,
         "text": task.data.text,
         "tags": task.data.tags
-      });
+      }, await getConfig());
     }
     catch(error) {
       console.log(error);
@@ -45,7 +53,7 @@ class RoutesTasks {
     try {
         await delay(1);
         let searchValue = event.srcElement.value;
-        const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}`)
+        const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}`,await getConfig())
 
         let regexp = new RegExp(`.*${searchValue}.*`, 'i');
         let matches = tasks.data.filter((task) => task.title.match(regexp));
