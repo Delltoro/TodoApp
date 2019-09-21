@@ -18,6 +18,14 @@ class RoutesTasks {
       const ENDPOINT_USER = '/api/users/me';
       const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT_USER}`,await getConfig());
       UITasks.renderTasksList(tasks.data.tasks);
+
+      document.querySelector('.username-display').innerText = tasks.data.username;
+      
+      if (tasks.data.avatarURL){
+        const imgURL = `url('${tasks.data.avatarURL}')`
+        console.log(imgURL);
+        document.querySelector(".user-avatar").style.backgroundImage = imgURL;
+      }
       return true
     }
     catch(error) {
