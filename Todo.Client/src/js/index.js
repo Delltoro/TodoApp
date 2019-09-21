@@ -1,13 +1,21 @@
 import UITasks from './UITasks';
-import {pageData, Page} from './PageModel';
+import RoutesTasks from './RoutesTasks';
+import loginController from './loginController';
 
-UITasks.renderHomePage();
-if (!pageData.getKey()){
-    Page.showlogin()
+
+
+if (window.location.href.match(/.*index.html.*/) || !window.location.href.match(/.*.html.*/)){
+    
+    if (!localStorage.getItem("x-auth-token")){
+    
+        window.location.replace(`${window.location.href.split("index.html")[0]}login.html`);
+    }
+    else{
+        UITasks.renderHomePage();
+        RoutesTasks.getTasks();
+    }
 }
-else{
-    Page.renderTasks()
+
+if (window.location.href.match(/.*login.html.*/)){
+    loginController();
 }
-
-
-

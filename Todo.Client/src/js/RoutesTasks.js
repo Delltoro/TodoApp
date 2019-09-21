@@ -1,14 +1,13 @@
 import axios from 'axios';
 import UITasks from './UITasks';
 import { delay } from 'q';
-import {pageData, Page} from './PageModel';
 
 const ENDPOINT = '/api/tasks';
 
 
 async function getConfig(){
   await delay(1);
-  return {"headers":{"x-auth-token":pageData.getKey()}}
+  return {"headers":{"x-auth-token":localStorage["x-auth-token"]}}
 }
 
 class RoutesTasks {
