@@ -12,6 +12,22 @@ async function getConfig(){
 
 class RoutesTasks {
 
+  static async getUser() {
+    try {
+      await delay(1);
+      const ENDPOINT_USER = '/api/users/me';
+      const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT_USER}`,await getConfig());
+      UITasks.renderTasksList(tasks.data.tasks);
+      return true
+    }
+    catch(error) {
+      console.log(error);
+      return false
+    }
+  }
+
+
+
   static async getTasks() {
     try {
       await delay(1);

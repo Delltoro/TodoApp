@@ -3,19 +3,18 @@ import RoutesTasks from './RoutesTasks';
 import loginController from './loginController';
 
 
-
-if (window.location.href.match(/.*index.html.*/) || !window.location.href.match(/.*.html.*/)){
-    
-    if (!localStorage.getItem("x-auth-token")){
-    
-        window.location.replace(`${window.location.href.split("index.html")[0]}login.html`);
-    }
-    else{
+async function isLoginAndRun(){
+    if (window.location.href.match(/.*index.html.*/) || !window.location.href.match(/.*.html.*/)){
         UITasks.renderHomePage();
-        RoutesTasks.getTasks();
+        if (!await RoutesTasks.getUser()){
+            window.location.replace(`${window.location.href.split("index.html")[0]}login.html`);
+        }
     }
+    
+    if (window.location.href.match(/.*login.html.*/)){
+        loginController();
+    }
+    
 }
 
-if (window.location.href.match(/.*login.html.*/)){
-    loginController();
-}
+isLoginAndRun();
