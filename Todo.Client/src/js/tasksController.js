@@ -4,7 +4,14 @@ const tasksController = () => {
   document.querySelector('.home-page').addEventListener('click', event => {
 
     if(event.target.classList.contains('show-full-task')) {
-      RoutesTasks.getTask(event.target.parentElement.dataset.id, 'expand');
+      RoutesTasks.getTask(event.target.parentElement.dataset.id, 'expand').then(() => {
+        document.querySelectorAll('.fa-trash-alt').forEach((item) => {
+          item.addEventListener('click', (e) => {
+            console.log(e)
+            RoutesTasks.deleteTask(e.target.parentNode.parentNode.dataset.id, e.target.parentNode.parentNode);
+          })
+        })
+      })
     }
     if(event.target.classList.contains('collapse-task')) {
       RoutesTasks.getTask(event.target.parentElement.parentElement.dataset.id, 'collapse');

@@ -57,6 +57,17 @@ class RoutesTasks {
     }
   }
 
+  static async deleteTask(id, item) {
+    try {
+      console.log(item);
+      const task = await axios.delete(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,await getConfig());
+      item.remove();
+    }
+    catch(error) {
+      console.log(error);
+    }
+  }
+
   static async setTaskState(id, isDone) {
     try {
       const task = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,await getConfig());
