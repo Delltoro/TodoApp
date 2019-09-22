@@ -69,6 +69,22 @@ class UITasks {
       <p class="task-title">${taskData.title}</p>
       <i class="toggle-task-state fas fa-check"></i>`;
   }
+
+  static editTask(id) {
+    const task = document.querySelector(`div[data-id="${id}"]`);
+    const title = document.querySelector(`div[data-id="${id}"] .task-title`).innerText; 
+    const text = document.querySelector(`div[data-id="${id}"] .task-text`).innerText;
+    task.classList.add('edit');
+    task.innerHTML = `<div class="toolbar">
+          <i class="collapse-task fas fa-chevron-up"></i>
+          <i class="fas fa-pencil-alt"></i>
+          <i class="fas fa-trash-alt"></i>
+          </div>
+          <p class="task-title"><input type="text" name="task-title" value="${title}"></p>
+          <p class="task-text"><textarea name="task-text" id="" cols="30" rows="10">${text}</textarea></p>
+          <input type="submit" value="Save task" class="save">`
+  }
+
 }
 
 export default UITasks;

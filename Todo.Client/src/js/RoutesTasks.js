@@ -70,13 +70,26 @@ class RoutesTasks {
 
   static async setTaskState(id, isDone) {
     try {
-      const task = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,await getConfig());
+      
       axios.put(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,{
-        "isDone": isDone,
-        "title": task.data.title,
-        "text": task.data.text,
-        "tags": task.data.tags
+        "isDone": isDone
       }, await getConfig());
+    }
+    catch(error) {
+      console.log(error);
+    }
+  }
+
+  static async updateTask(event) {
+    try {
+      const id = await event.target.parentNode.dataset.id;
+      const title = await document.querySelector(`div[data-id="${id}"] .task-title input`).value; 
+      const text = await document.querySelector(`div[data-id="${id}"] .task-text textarea`).value;
+      const task = await axios.put(`${CONFIG.ServerAPI.url}${ENDPOINT}/${id}`,{
+        "title": title,
+        "text": text
+      }, await getConfig());
+      UITasks.expandTask(task.data)
     }
     catch(error) {
       console.log(error);

@@ -1,4 +1,4 @@
-const { Task, validate } = require('../models/task');
+const { Task, validate, validateUpdate } = require('../models/task');
 const {User} = require('../models/user')
 const config = require('config');
 const jwt = require('jsonwebtoken');
@@ -63,17 +63,13 @@ module.exports = {
 
   updateTask: async (req, res) => {
         try {
-            const { error } = validate(req.body);
+            const { error } = validateUpdate(req.body);
             if(error) return res.status(400).send(error.details[0].message);
 
+            const update = req.body;
+
             const task = await Task.findByIdAndUpdate(
-                req.params.id,
-                {
-                    title: req.body.title,
-                    text: req.body.text,
-                    tags: req.body.tags,
-                    isDone: req.body.isDone
-                },
+                req.params.id, update,
                 { new: true});
             if(!task) return res.status(404).send('Task not found.');
             res.send(task);
