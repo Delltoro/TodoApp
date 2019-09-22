@@ -84,6 +84,13 @@ module.exports = {
 
   removeTask: async (req, res) => {
         try {
+            const user = await User
+                .findById(req.user._id)
+                .populate('tasks');
+
+            user.tasks = user.tasks.filter((item) => { return (item._id != req.params.id) })
+            user.save();
+
             const task = await Task.findByIdAndRemove(req.params.id);
             if(!task) return res.status(404).send('Task not found.');
             res.send(task);
