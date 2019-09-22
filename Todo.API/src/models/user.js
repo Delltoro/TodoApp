@@ -22,12 +22,15 @@ const userSchema = new mongoose.Schema({
     },
     tasks: {
         type: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Task' } ],
-    }
+    },
+    avatarURL: {
+        type: String
+    } // TODO: implement file loading instead of providing url
 
 })
 
 
-userSchema.methods.generateAuthToken = function() { 
+userSchema.methods.generateAuthToken = function() {
     const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
     return token;
   }
@@ -40,6 +43,7 @@ function validateUser(user) {
         email: Joi.string().email().required(),
         password: Joi.string().min(5).max(255).required(),
         tasks: Joi.array().items(Joi.string()),
+        avatarURL: Joi.string()
     }
     return Joi.validate(user, schema);
 }
