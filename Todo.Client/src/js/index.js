@@ -1,6 +1,7 @@
 import UITasks from './UITasks';
 import RoutesTasks from './RoutesTasks';
 import loginController from './loginController';
+import registerController from './registerController';
 
 
 function isIndexFile(){
@@ -9,6 +10,10 @@ function isIndexFile(){
 
 function isLoginFile(){
     return window.location.href.match(/.*login.html.*/);
+}
+
+function isRegisterFile(){
+    return window.location.href.match(/.*register.html.*/);
 }
 
 function redirectToLogin(){
@@ -28,6 +33,10 @@ async function isLoginAndRun(){
     
     if (isLoginFile()){
         loginController();
+    }
+
+    if (isRegisterFile()){
+        registerController();
     }
     
 }

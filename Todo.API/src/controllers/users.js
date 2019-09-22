@@ -65,7 +65,7 @@ module.exports = {
             await user.save();
             const token = user.generateAuthToken();
         
-            res.header('x-auth-token', token).send(user);
+            res.send(token);
         } catch (error) {
             res.status(500).send('An error occured.');
         }
