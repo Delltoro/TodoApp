@@ -1,17 +1,40 @@
 import axios from 'axios';
 import UITasks from './UITasks';
 import { delay } from 'q';
-import {pageData, Page} from './PageModel';
 
 const ENDPOINT = '/api/tasks';
 
 
 async function getConfig(){
   await delay(1);
-  return {"headers":{"x-auth-token":pageData.getKey()}}
+  return {"headers":{"x-auth-token":localStorage["x-auth-token"]}}
 }
 
 class RoutesTasks {
+
+  static async getUser() {
+    try {
+      await delay(1);
+      const ENDPOINT_USER = '/api/users/me';
+      const tasks = await axios.get(`${CONFIG.ServerAPI.url}${ENDPOINT_USER}`,await getConfig());
+      UITasks.renderTasksList(tasks.data.tasks);
+
+      document.querySelector('.username-display').innerText = tasks.data.username;
+      
+      if (tasks.data.avatarURL){
+        const imgURL = `url('${tasks.data.avatarURL}')`
+        console.log(imgURL);
+        document.querySelector(".user-avatar").style.backgroundImage = imgURL;
+      }
+      return true
+    }
+    catch(error) {
+      console.log(error);
+      return false
+    }
+  }
+
+
 
   static async getTasks() {
     try {
