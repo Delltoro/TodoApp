@@ -16,6 +16,17 @@ header {
     .username-display {
       margin: 0;
     }
+    .logout {
+      background-color: transparent;
+      border: none;
+      color: $main-col;
+      font: inherit;
+      font-size: .7rem;
+      &:hover {
+        color: $hover-col;
+        cursor: pointer;
+      }
+    }
   }
   .avatar-display {
     width: 50%;
