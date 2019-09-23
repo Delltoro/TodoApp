@@ -21,6 +21,7 @@ header {
     width: 50%;
 
     .user-avatar {
+      justify-self: flex-start;
       background-image: url('../images/dummy-avatar.png');
       background-repeat: no-repeat;
       background-size: cover;
@@ -28,7 +29,7 @@ header {
       border-radius: 50%;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       height: 50px;
-      margin: 0 auto;
+      margin: 0 50px;
       width: 50px;
     }
   }
