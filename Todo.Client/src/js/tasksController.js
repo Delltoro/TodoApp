@@ -43,7 +43,7 @@ const tasksController = () => {
     }
   })
   document.querySelector(".search-bar").addEventListener('keydown',RoutesTasks.searchTask);
-
+  document.querySelector(".logout").addEventListener('click', logout);
 }
 
 export default tasksController;
