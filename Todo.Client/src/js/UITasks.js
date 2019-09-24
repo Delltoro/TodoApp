@@ -1,5 +1,5 @@
 import tasksController from './tasksController';
-
+import body from './taskBody';
 const main = document.querySelector('main');
 
 class UITasks {
@@ -85,6 +85,62 @@ class UITasks {
           <input type="submit" value="Save task" class="save">`
   }
 
+  static addTask() {
+
+    this.hideComponents(true);
+    this.createForm();
+    const tags = []
+  
+  }
+
+  static createForm() {
+    const home = main.querySelector('.home-page');
+    const creatorPage = document.createElement('div');
+    creatorPage.innerHTML = body;
+    creatorPage.classList.add('task-creator--wrapper');
+    document.querySelector('.app-container').style.justifyContent="center";
+    home.appendChild(creatorPage);
+    this.applyBackButton(home,creatorPage);
+  
+  }
+
+  static hideComponents(hide) {
+    const items = [document.querySelector('.search-fields') , document.querySelector('.add-task') , document.querySelector('.tasks-list')];
+    if(hide === true) {
+      items.forEach((val) => {
+        if ( val != null && typeof val !== "undefined") {
+          val.style.display="none";
+        }
+          else  throw 'Components not found';
+        
+      })
+    }
+    else {
+      items.forEach((val) => {
+        if ( val != null && typeof val !== "undefined") {
+          val.style.display="block";
+        }
+          else  throw 'Components not found';
+        
+      })
+    }
+  }
+
+  static applyBackButton(home,creatorPage) {
+    const btn = document.createElement('button');
+      btn.innerHTML = "<h4>Back</h4>"
+      btn.style.cssText = `position: absolute;
+                           top: 2%; 
+                           left:0%; 
+                           padding: 0.3rem 0.7rem;`
+
+      const parent = document.querySelector('.Tform');
+        parent.insertBefore(btn,parent.children[0]);
+        btn.addEventListener('click' , () => {
+            home.removeChild(creatorPage);
+            this.hideComponents(false);
+        })
+  }
 }
 
 export default UITasks;

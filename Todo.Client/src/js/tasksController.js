@@ -37,8 +37,13 @@ const tasksController = () => {
         event.target.parentElement.classList.add('active');
       }
     }
+  
+    if(event.target.classList.contains('fa-plus')) {
+      UITasks.addTask();
+    }
   })
   document.querySelector(".search-bar").addEventListener('keydown',RoutesTasks.searchTask);
+
 }
 
 export default tasksController;

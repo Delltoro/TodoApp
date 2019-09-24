@@ -38,7 +38,7 @@ async function isLoginAndRun(){
     if (isRegisterFile()){
         registerController();
     }
-    
+  
 }
 
 isLoginAndRun();
