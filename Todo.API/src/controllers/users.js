@@ -65,7 +65,6 @@ module.exports = {
             user.password = await bcrypt.hash(user.password, salt);
             await user.save();
             const token = user.generateAuthToken();
-          
             res.send(token);
 
         } catch (error) {

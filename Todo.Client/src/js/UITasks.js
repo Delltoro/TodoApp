@@ -1,5 +1,6 @@
 import tasksController from './tasksController';
 import body from './taskBody';
+import routesTasks from './RoutesTasks'
 const main = document.querySelector('main');
 
 class UITasks {
@@ -86,11 +87,8 @@ class UITasks {
   }
 
   static addTask() {
-
     this.hideComponents(true);
-    this.createForm();
-    const tags = []
-  
+    this.createForm();    
   }
 
   static createForm() {
@@ -98,10 +96,15 @@ class UITasks {
     const creatorPage = document.createElement('div');
     creatorPage.innerHTML = body;
     creatorPage.classList.add('task-creator--wrapper');
+    const form = creatorPage.children[0];
     document.querySelector('.app-container').style.justifyContent="center";
     home.appendChild(creatorPage);
     this.applyBackButton(home,creatorPage);
-  
+    form.addEventListener('submit',async (e) => {
+      const task = await routesTasks.addTask(e);
+      console.log(task);
+      //console.log(`Selected tags: ${selectComponent.options[selectComponent.selectedIndex]}`);
+    })
   }
 
   static hideComponents(hide) {
@@ -119,6 +122,7 @@ class UITasks {
       items.forEach((val) => {
         if ( val != null && typeof val !== "undefined") {
           val.style.display="block";
+          document.querySelector('.app-container').style.justifyContent="space-around";
         }
           else  throw 'Components not found';
         
@@ -130,9 +134,10 @@ class UITasks {
     const btn = document.createElement('button');
       btn.innerHTML = "<h4>Back</h4>"
       btn.style.cssText = `position: absolute;
-                           top: 2%; 
-                           left:0%; 
-                           padding: 0.3rem 0.7rem;`
+                           top: -4%; 
+                           left: -5%; 
+                           padding: 0.3rem 0.7rem;
+                           border-radius: 15px 0 18px 5px;`
 
       const parent = document.querySelector('.Tform');
         parent.insertBefore(btn,parent.children[0]);
@@ -141,6 +146,7 @@ class UITasks {
             this.hideComponents(false);
         })
   }
+
 }
 
 export default UITasks;

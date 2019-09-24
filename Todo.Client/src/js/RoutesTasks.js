@@ -96,6 +96,23 @@ class RoutesTasks {
     }
   }
 
+  static async addTask(e) {
+    const task = {};
+    try {
+      const title = e.target.elements[1].value;
+      const description = e.target.elements[2].value;
+      const tag = e.target.elements[3].value;
+      task = await axios.post(`${CONFIG.ServerAPI.url}${ENDPOINT}`,{
+        "title": title,
+        "text": description,
+        "tags": tag
+      });
+    }catch(error) {
+      console.log(error)
+    }
+    return task;
+  }
+
   static async searchTask(event){
     try {
         await delay(1);

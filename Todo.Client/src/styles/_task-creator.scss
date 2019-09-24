@@ -25,7 +25,6 @@
     &__input {
         font-size: 1rem;
         font-family: inherit;
-        padding: 1rem 1.5rem;
         border-radius: 3px;
         background-color: rgba(#fff,.5);
         border: none;
@@ -33,21 +32,35 @@
     &__input:focus {
         outline: none;
         box-shadow: 0 1rem 2rem rgba(#000, .2);
-        border-bottom: 3px solid goldenrod;
+        border-bottom: 3px solid $main-col;
     }
 
     & .heading-secondary {
         position: relative;
-        top: 2%;
-        left: 25%;
-        font-size: 1.3rem;
-        letter-spacing: 0.75rem;
+        top: 0%;
+        left: 13%;
+        font-size: 1.1rem;
+        letter-spacing: 0.5rem;
         padding-bottom: 0.6rem;
         color: black;
+        text-transform: uppercase;
     }
 }
+#tagLabel {
+    display: block;
+}
 
+select {
+    &:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(#000, .2);
+        border-bottom: 3px solid $main-col;
+    }
+}
+input[type=submit] {
+    padding: 0.25rem 0.75rem;
 
+}
 textarea {
     margin: 0px;
     width: 260px;
@@ -58,7 +71,12 @@ textarea {
     padding-bottom: 1.5rem;
     border-radius: 3px;
     background-color: rgba(#fff,.5);
-    border: none;   
+    border: none;
+    &:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(#000, .2);
+        border-bottom: 3px solid $main-col;
+    }
 }
 ::-webkit-input-placeholder {
     color: $main-col;
